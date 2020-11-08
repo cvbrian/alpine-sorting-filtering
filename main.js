@@ -17,8 +17,10 @@ function app() {
         init: function () {
             const data = [];
             const results = [];
-            this.$el.querySelectorAll('.item').forEach(function (item, index) {
+            const items = this.$el.querySelectorAll('[data-a-type="item"]');
+            items.forEach(function (item, index) {
                 // NOTE - create data array with all data
+                const items = item.querySelectorAll('[data-a-type]')
                 const gradeLevels = item.querySelector('.gradeLevels').innerText.split(', ');
                 const status = item.querySelector('.status').innerText;
                 const district = item.querySelector('.district').innerText;
