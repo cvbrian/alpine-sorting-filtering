@@ -1,10 +1,3 @@
-import processClasses from 'https://unpkg.com/runcss@^0/dist/runcss.modern.js'
-// Get all elements that have a class attribute.
-for (const element of document.querySelectorAll('*[class]')) {
-    processClasses(element.className)
-}
-// Display elements
-document.body.style.display = "block"
 
 
 
@@ -20,26 +13,38 @@ function app() {
             const items = this.$el.querySelectorAll('[data-a-type="item"]');
             items.forEach(function (item, index) {
                 // NOTE - create data array with all data
-                const items = item.querySelectorAll('[data-a-type]')
-                const gradeLevels = item.querySelector('.gradeLevels').innerText.split(', ');
-                const status = item.querySelector('.status').innerText;
-                const district = item.querySelector('.district').innerText;
-                data.push({
+                const items = item.querySelectorAll('[data-a-type]');
+                const itemData = {
                     id: item.id,
                     text: item.innerText,
-                    gradeLevels,
-                    status,
-                    district
+                };
+                items.forEach(function (i) {
+                    // console.log(i.dataset.aType);
+                    const type = i.dataset.aType;
+                    const value = i.innerText;
+                    itemData[type] = value;
                 });
-                // NOTE - fill results arrays with initial values
-                results.push(item.id);
+                console.log(itemData);
+                data.push(itemData);
+                // const gradeLevels = item.querySelector('.gradeLevels').innerText.split(', ');
+                // const status = item.querySelector('.status').innerText;
+                // const district = item.querySelector('.district').innerText;
+                // data.push({
+                //     id: item.id,
+                //     text: item.innerText,
+                //     gradeLevels,
+                //     status,
+                //     district
+                // });
+                // // NOTE - fill results arrays with initial values
+                // results.push(item.id);
             });
             // TODO - Find all options for districts 
             const districts = data.map(i => i.district).filter((value, index, array) => array.indexOf(
                 value) === index);
             // TODO - Find all options for grade levels
             // NOTE - push data to main object
-            console.log(districts);
+            // console.log(districts);
             this.data = data;
             this.districts = districts;
             this.searchResults = results;
