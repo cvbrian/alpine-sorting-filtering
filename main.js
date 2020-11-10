@@ -5,43 +5,31 @@
 function app() {
     return {
         results: [],
-        data: null,
         // NOTE - Initialize data
         init: function () {
             const data = [];
             const results = [];
             const items = this.$el.querySelectorAll('[data-a-type="item"]');
-            items.forEach(function (item, index) {
+            items.forEach((item, index) => {
                 // NOTE - create data array with all data
                 const items = item.querySelectorAll('[data-a-type]');
                 const itemData = {
                     id: item.id,
                     text: item.innerText,
                 };
-                items.forEach(function (i) {
+                // NOTE Find all types and values
+                items.forEach( (i) => {
                     // console.log(i.dataset.aType);
                     const type = i.dataset.aType;
                     const value = i.innerText;
                     itemData[type] = value;
                 });
-                console.log(itemData);
+                // NOTE - fill results arrays with initial values
                 data.push(itemData);
-                // const gradeLevels = item.querySelector('.gradeLevels').innerText.split(', ');
-                // const status = item.querySelector('.status').innerText;
-                // const district = item.querySelector('.district').innerText;
-                // data.push({
-                //     id: item.id,
-                //     text: item.innerText,
-                //     gradeLevels,
-                //     status,
-                //     district
-                // });
-                // // NOTE - fill results arrays with initial values
-                // results.push(item.id);
             });
+            // console.log(data);
             // TODO - Find all options for districts 
-            const districts = data.map(i => i.district).filter((value, index, array) => array.indexOf(
-                value) === index);
+            const districts = data.map(i => i.district).filter((value, index, array) => array.indexOf(value) === index);
             // TODO - Find all options for grade levels
             // NOTE - push data to main object
             // console.log(districts);
