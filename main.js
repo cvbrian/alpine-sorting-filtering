@@ -1,6 +1,9 @@
-// TODO - Find all options for all the types
-// TODO - Create variables for all types
-// TODO - 
+// TODO Generic search function
+// TODO Generic Filter function
+// TODO Filter And/Or
+// TODO Multiple query options
+// TODO Set up sorting
+
 
 
 
@@ -8,6 +11,7 @@ function app() {
     return {
         results: [],
         data: [],
+        options: {},
         // NOTE - Initialize data
         init: function () {
             const data = [];
@@ -26,6 +30,17 @@ function app() {
                     const type = i.dataset.aType;
                     const value = i.innerText;
                     itemData[type] = value;
+                    // NOTE Find all options for all the types
+                    // NOTE check if options object has type and add if not
+                    if (!(type in this.options)) {
+                        this.options[type] = [];
+                    }
+                    // NOTE check if option type has value and push if not. 
+                    console.log(!this.options[type].includes(value))
+                    if (!this.options[type].includes(value)) {
+                        // console.log(value);
+                        this.options[type].push(value);
+                    }
                 });
                 // NOTE - fill data array with initial values
                 this.data.push(itemData);
