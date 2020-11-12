@@ -36,7 +36,6 @@ function app() {
                         this.options[type] = [];
                     }
                     // NOTE check if option type has value and push if not. 
-                    console.log(!this.options[type].includes(value))
                     if (!this.options[type].includes(value)) {
                         // console.log(value);
                         this.options[type].push(value);
@@ -45,18 +44,19 @@ function app() {
                 // NOTE - fill data array with initial values
                 this.data.push(itemData);
             });
-            // const districts = data.map(i => i.district).filter((value, index, array) => array.indexOf(value) === index);
         },
         // NOTE - Search
-        searchResults: [],
-        search: "",
-        searchClasses: function () {
-            let searchResults = [];
-            const searchTerm = this.search;
-            const result = this.data.filter(i => i.text.toLowerCase().includes(searchTerm.toLowerCase()));
-            result.forEach(i => searchResults.push(i.id));
-            this.searchResults = [...searchResults];
-            this.compileResults();
+        search: {
+            results: [],
+            searchTerm: '',
+            searchItems: function () {
+                let searchResults = [];
+                const searchTerm = this.search;
+                const result = this.data.filter(i => i.text.toLowerCase().includes(searchTerm.toLowerCase()));
+                result.forEach(i => searchResults.push(i.id));
+                this.searchResults = [...searchResults];
+                this.compileResults();
+            },
         },
         // NOTE - filter grade levels
         gradeLevels: [{
