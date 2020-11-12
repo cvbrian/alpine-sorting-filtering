@@ -1,10 +1,13 @@
-
+// TODO - Find all options for all the types
+// TODO - Create variables for all types
+// TODO - 
 
 
 
 function app() {
     return {
         results: [],
+        data: [],
         // NOTE - Initialize data
         init: function () {
             const data = [];
@@ -24,20 +27,10 @@ function app() {
                     const value = i.innerText;
                     itemData[type] = value;
                 });
-                // NOTE - fill results arrays with initial values
-                data.push(itemData);
+                // NOTE - fill data array with initial values
+                this.data.push(itemData);
             });
-            // console.log(data);
-            // TODO - Find all options for districts 
-            const districts = data.map(i => i.district).filter((value, index, array) => array.indexOf(value) === index);
-            // TODO - Find all options for grade levels
-            // NOTE - push data to main object
-            // console.log(districts);
-            this.data = data;
-            this.districts = districts;
-            this.searchResults = results;
-            this.gradeLevelResults = results;
-            this.results = results;
+            // const districts = data.map(i => i.district).filter((value, index, array) => array.indexOf(value) === index);
         },
         // NOTE - Search
         searchResults: [],
