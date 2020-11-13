@@ -1,18 +1,19 @@
+// SECTION Todos
 // TODO Generic search function
 // TODO Generic Filter function
 // TODO Filter And/Or
 // TODO Multiple query options
 // TODO Set up sorting
-
+// !SECTION
 
 
 
 function app() {
     return {
+        // SECTION - Initialize data
         results: [],
         data: [],
         options: {},
-        // NOTE - Initialize data
         init: function () {
             const data = [];
             const results = [];
@@ -45,19 +46,20 @@ function app() {
                 this.data.push(itemData);
             });
         },
-        // NOTE - Search
-        search: {
-            results: [],
-            searchTerm: '',
-            searchItems: function () {
-                let searchResults = [];
-                const searchTerm = this.search;
-                const result = this.data.filter(i => i.text.toLowerCase().includes(searchTerm.toLowerCase()));
-                result.forEach(i => searchResults.push(i.id));
-                this.searchResults = [...searchResults];
-                this.compileResults();
-            },
+        // !SECTION
+        // SECTION - Search
+        searchResults: [],
+        searchTerm: '',
+        searchItems: function () {
+            // let searchResults = [];
+            const searchTerm = this.search;
+            const result = this.data.filter(i => i.text.toLowerCase().includes(searchTerm.toLowerCase()));
+            result.forEach(i => this.searchResults.push(i.id));
+            // this.searchResults = [...searchResults];
+            this.compileResults();
         },
+        // !SECTION
+        // SECTION Filter function
         // NOTE - filter grade levels
         gradeLevels: [{
             name: 'Upper',
@@ -104,6 +106,7 @@ function app() {
 
         },
         // TODO filter by status
+        // !SECTION
         // Compile results array
         compileResults: function () {
             const gradeLevelResults = [...this.gradeLevelResults];
