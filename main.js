@@ -27,7 +27,6 @@ function app() {
                 };
                 // NOTE Find all types and values
                 items.forEach((i) => {
-                    // console.log(i.dataset.aType);
                     const type = i.dataset.aType;
                     const value = i.innerText;
                     itemData[type] = value;
@@ -38,15 +37,17 @@ function app() {
                     }
                     // NOTE check if option type has value and push if not. 
                     if (!this.options[type].includes(value)) {
-                        // console.log(value);
                         this.options[type].push(value);
                     }
                 });
                 // NOTE - fill data array with initial values
                 this.data.push(itemData);
+                console.log(itemData.id);
+                this.results.all.push(itemData.id);
                 count++;
             });
             console.log(`count: ${count}`);
+            this.searchItems();
         },
         // !SECTION
         // SECTION - Search
@@ -54,11 +55,9 @@ function app() {
         searchTerm: '',
         searchItems: function () {
             let searchResults = [];
-            // const searchTerm = this.search;
             const result = this.data.filter(i => i.text.toLowerCase().includes(this.searchTerm.toLowerCase()));
             result.forEach(i => searchResults.push(i.id));
             this.results.search = [...searchResults];
-            // console.log(this.results.search)
             this.compileResults();
         },
         // !SECTION
@@ -97,6 +96,7 @@ function app() {
         // SECTION Results
         results: {
             search: [],
+            all:[],
         },
         finalResults: [],
         // Compile results array
