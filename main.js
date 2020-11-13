@@ -1,5 +1,4 @@
 // SECTION Todos
-// TODO Generic search function
 // TODO Generic Filter function
 // TODO Filter And/Or
 // TODO Multiple query options
@@ -28,21 +27,21 @@ function app() {
                 // NOTE Find all types and values
                 items.forEach((i) => {
                     const type = i.dataset.aType;
-                    const value = i.innerText;
+                    const typeLC = type.toLowerCase();
+                    const value = i.innerText.toLowerCase();
                     itemData[type] = value;
                     // NOTE Find all options for all the types
                     // NOTE check if options object has type and add if not
-                    if (!(type in this.options)) {
-                        this.options[type] = [];
+                    if (!(typeLC in this.options)) {
+                        this.options[typeLC] = [];
                     }
                     // NOTE check if option type has value and push if not. 
-                    if (!this.options[type].includes(value)) {
-                        this.options[type].push(value);
+                    if (!this.options[typeLC].includes(value)) {
+                        this.options[typeLC].push(value);
                     }
                 });
                 // NOTE - fill data array with initial values
                 this.data.push(itemData);
-                console.log(itemData.id);
                 this.results.all.push(itemData.id);
                 count++;
             });
@@ -62,6 +61,11 @@ function app() {
         },
         // !SECTION
         // SECTION Filter function
+        filterItems: function (type, andOr) {
+            
+        },
+        // !SECTION
+        // SECTION Old filtering functions
         // NOTE - filter grade levels
         gradeLevelResults: [],
         filterGradeLevels: function () {
@@ -102,7 +106,6 @@ function app() {
         // Compile results array
         compileResults: function () {
             const resultsArray = Object.values(this.results);
-            console.log(resultsArray);
             const results = resultsArray.reduce((acc, current) => acc.filter(i => current.includes(i)));
             this.finalResults = [...results];
         },
