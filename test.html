@@ -6,15 +6,22 @@
     <title>Sorting and Filtering test
     </title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href="https://unpkg.com/runcss@^0/dist/preflight.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <script src='main.js'></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 <body>
     <div x-data="app()" x-init="init" class="bg-gray-100">
-        <div class="p-6" @click="search.searchItems()">test search</div>
+        <div class="p-6 flex">
+            <input 
+                type="search" 
+                class="border border-warm-grey-300 rounded-full outline-none appearance-none px-3 py-1"
+                x-model="searchTerm"
+                @keyup.debounce.500ms="searchItems()"
+            />
+        </div>
         <div class="flex flex-col">
-            <div data-a-type="item" id="23">
+            <div data-a-type="item" id="23" x-show="isVisible('23')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">Eastern</div>
                 <div data-a-type="status">open</div>
@@ -23,7 +30,7 @@
                     <div data-a-type="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur perferendis, nostrum explicabo corrupti odit magni similique dolorem non eveniet hic mollitia illo recusandae ex laudantium aut alias itaque nihil labore fuga, delectus sit at totam, quo iure. Dolore facilis libero culpa rerum est adipisci iusto! Similique nulla laborum eligendi excepturi.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="2">
+            <div data-a-type="item" id="2" x-show="isVisible('2')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -32,7 +39,7 @@
                     <div data-a-type="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, aspernatur veritatis, sunt eaque, beatae quasi harum quibusdam libero culpa error ullam vero voluptas delectus. Saepe?</div>
                 </div>
             </div>
-            <div data-a-type="item" id="32">
+            <div data-a-type="item" id="32"  x-show="isVisible('32')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">open</div>
@@ -41,7 +48,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sed?</div>
                 </div>
             </div>
-            <div data-a-type="item" id="432">
+            <div data-a-type="item" id="432" x-show="isVisible('432')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
@@ -50,7 +57,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quas ab adipisci dignissimos quisquam tempora cupiditate at! Rerum porro a quam vel fugiat alias, tenetur expedita corrupti veniam accusantium ipsa.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="42">
+            <div data-a-type="item" id="42" x-show="isVisible('42')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">eastern</div>
                 <div data-a-type="status">closed</div>
@@ -59,7 +66,7 @@
                     <div data-a-type="test">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat rem laborum reiciendis autem dignissimos soluta optio asperiores praesentium maiores sunt?</div>
                 </div>
             </div>
-            <div data-a-type="item" id="12">
+            <div data-a-type="item" id="12" x-show="isVisible('12')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">closed</div>
@@ -68,7 +75,7 @@
                     <div data-a-type="test">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi, blanditiis?</div>
                 </div>
             </div>
-            <div data-a-type="item" id="34">
+            <div data-a-type="item" id="34" x-show="isVisible('34')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
@@ -77,7 +84,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi quis in, nisi ab magni nihil nam commodi cum corrupti eos?</div>
                 </div>
             </div>
-            <div data-a-type="item" id="64">
+            <div data-a-type="item" id="64" x-show="isVisible('64')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -86,7 +93,7 @@
                     <div data-a-type="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error doloremque nulla minus qui dignissimos, id officiis commodi! Sed, ea soluta.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="343">
+            <div data-a-type="item" id="343" x-show="isVisible('343')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -95,7 +102,7 @@
                     <div data-a-type="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, nulla.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="7">
+            <div data-a-type="item" id="7" x-show="isVisible('7')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">eastern</div>
                 <div data-a-type="status">open</div>
@@ -104,7 +111,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ratione nostrum laborum in dolorem esse minima sit veniam quasi!</div>
                 </div>
             </div>
-            <div data-a-type="item" id="78">
+            <div data-a-type="item" id="78" x-show="isVisible('78')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">open</div>
@@ -113,7 +120,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, dolore facilis a molestias repellendus officiis accusantium beatae aperiam facere animi.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="98">
+            <div data-a-type="item" id="98" x-show="isVisible('98')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
@@ -122,7 +129,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi, temporibus distinctio? Dolores illo amet et quae eos dolorum, sint voluptas.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="9">
+            <div data-a-type="item" id="9" x-show="isVisible('9')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">eastern</div>
                 <div data-a-type="status">closed</div>
@@ -131,7 +138,7 @@
                     <div data-a-type="test">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae animi, voluptatibus ex ipsum blanditiis vero, non, earum eos odit et tenetur pariatur! Laborum dolorem ab est sunt? Vel, magni autem.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="554">
+            <div data-a-type="item" id="554" x-show="isVisible('554')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">eastern</div>
                 <div data-a-type="status">closed</div>
@@ -140,7 +147,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, dolore. Labore, suscipit ratione. Repudiandae soluta tenetur est repellat dolorum ipsam a, quibusdam, illum aperiam, corrupti sint adipisci accusamus molestiae animi aliquid facilis dolor voluptates. Sunt veniam perferendis, quam repellat, ducimus officia nobis autem minima porro modi, odit quo quis! At.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="35">
+            <div data-a-type="item" id="35" x-show="isVisible('35')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -149,7 +156,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dolorum voluptatem, repudiandae, similique veniam blanditiis ut minus maxime in magnam deserunt reiciendis laudantium, recusandae officiis itaque saepe quo minima.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="852">
+            <div data-a-type="item" id="852" x-show="isVisible('852')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
@@ -158,7 +165,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus vero architecto magni inventore! Odit quae ullam at, quos delectus sapiente excepturi perferendis debitis dolore, placeat quam repellat, nesciunt eum?</div>
                 </div>
             </div>
-            <div data-a-type="item" id="8828">
+            <div data-a-type="item" id="8828" x-show="isVisible('8828')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -167,7 +174,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas debitis aspernatur voluptates soluta, iusto reprehenderit repellendus excepturi voluptatem maxime necessitatibus, quidem neque suscipit fugit temporibus id ipsam. Voluptates, veniam?</div>
                 </div>
             </div>
-            <div data-a-type="item" id="868">
+            <div data-a-type="item" id="868" x-show="isVisible('868')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -176,7 +183,7 @@
                     <div data-a-type="test">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem ipsum saepe porro dolor sunt rem incidunt, dolorum reprehenderit quos sed.</div>
                 </div>
             </div>
-            <div data-a-type="item" id="896836">
+            <div data-a-type="item" id="896836" x-show="isVisible('896836')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">open</div>
@@ -185,7 +192,7 @@
                     <div data-a-type="test">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio maxime blanditiis molestiae. Nesciunt quos fugiat ea non sed ullam vel?</div>
                 </div>
             </div>
-            <div data-a-type="item" id="89">
+            <div data-a-type="item" id="89" x-show="isVisible('89')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>

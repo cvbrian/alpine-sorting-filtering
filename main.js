@@ -11,22 +11,22 @@
 function app() {
     return {
         // SECTION - Initialize data
-        results: [],
         data: [],
         options: {},
         init: function () {
             const data = [];
             const results = [];
+            let count = 0;
             const items = this.$el.querySelectorAll('[data-a-type="item"]');
             items.forEach((item, index) => {
                 // NOTE - create data array with all data
                 const items = item.querySelectorAll('[data-a-type]');
                 const itemData = {
-                    id: item.id,
+                    id: parseInt(item.id),
                     text: item.innerText,
                 };
                 // NOTE Find all types and values
-                items.forEach( (i) => {
+                items.forEach((i) => {
                     // console.log(i.dataset.aType);
                     const type = i.dataset.aType;
                     const value = i.innerText;
@@ -44,39 +44,26 @@ function app() {
                 });
                 // NOTE - fill data array with initial values
                 this.data.push(itemData);
+                count++;
             });
+            console.log(`count: ${count}`);
         },
         // !SECTION
         // SECTION - Search
         searchResults: [],
         searchTerm: '',
         searchItems: function () {
-            // let searchResults = [];
-            const searchTerm = this.search;
-            const result = this.data.filter(i => i.text.toLowerCase().includes(searchTerm.toLowerCase()));
-            result.forEach(i => this.searchResults.push(i.id));
-            // this.searchResults = [...searchResults];
+            let searchResults = [];
+            // const searchTerm = this.search;
+            const result = this.data.filter(i => i.text.toLowerCase().includes(this.searchTerm.toLowerCase()));
+            result.forEach(i => searchResults.push(i.id));
+            this.results.search = [...searchResults];
+            // console.log(this.results.search)
             this.compileResults();
         },
         // !SECTION
         // SECTION Filter function
         // NOTE - filter grade levels
-        gradeLevels: [{
-            name: 'Upper',
-            order: 3,
-            show: false,
-        },
-        {
-            name: 'Middle',
-            order: 2,
-            show: false,
-        },
-        {
-            name: 'Lower',
-            order: 1,
-            show: false,
-        },
-        ],
         gradeLevelResults: [],
         filterGradeLevels: function () {
             let filteredGradeLevels = this.gradeLevels.filter(i => i.show === true).map(i => i.name);
@@ -107,19 +94,25 @@ function app() {
         },
         // TODO filter by status
         // !SECTION
+        // SECTION Results
+        results: {
+            search: [],
+        },
+        finalResults: [],
         // Compile results array
         compileResults: function () {
-            const gradeLevelResults = [...this.gradeLevelResults];
-            const searchResults = [...this.searchResults];
-            const resultsArray = [gradeLevelResults, searchResults];
+            const resultsArray = Object.values(this.results);
+            console.log(resultsArray);
             const results = resultsArray.reduce((acc, current) => acc.filter(i => current.includes(i)));
             console.log('start compile');
             console.log(results);
             console.log('end compile');
-            this.results = [...results];
+            this.finalResults = [...results];
         },
         isVisible: function (id) {
-            return this.results.includes(id);
+            // console.log(id);
+            return this.finalResults.includes(id);
         },
+        // !SECTION
     }
 }
