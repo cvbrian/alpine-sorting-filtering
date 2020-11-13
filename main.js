@@ -22,7 +22,7 @@ function app() {
                 // NOTE - create data array with all data
                 const items = item.querySelectorAll('[data-a-type]');
                 const itemData = {
-                    id: parseInt(item.id),
+                    id: item.id,
                     text: item.innerText,
                 };
                 // NOTE Find all types and values
@@ -104,13 +104,11 @@ function app() {
             const resultsArray = Object.values(this.results);
             console.log(resultsArray);
             const results = resultsArray.reduce((acc, current) => acc.filter(i => current.includes(i)));
-            console.log('start compile');
-            console.log(results);
-            console.log('end compile');
             this.finalResults = [...results];
         },
         isVisible: function (id) {
             // console.log(id);
+            // debugger;
             return this.finalResults.includes(id);
         },
         // !SECTION
