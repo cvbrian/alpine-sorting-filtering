@@ -38,7 +38,7 @@ function app() {
                     // NOTE check if option type has value and push if not. 
                     const words = value.split(', ');
                     words.forEach(word => {
-                        if (!this.filters[type].includes(word)) {
+                        if (!this.filters[type].some(i => i.name === word)) {
                             const option = {
                                 name: word,
                                 show: false,
