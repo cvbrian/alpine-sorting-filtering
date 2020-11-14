@@ -28,7 +28,8 @@ function app() {
                 items.forEach((i) => {
                     const type = i.dataset.aType;
                     const typeLC = type.toLowerCase();
-                    const value = i.innerText.toLowerCase();
+                    const value = i.innerText;
+                    const valueLC = i.innerText.toLowerCase();
                     itemData[type] = value;
                     // NOTE Find all options for all the types
                     // NOTE check if options object has type and add if not
@@ -36,9 +37,13 @@ function app() {
                         this.options[typeLC] = [];
                     }
                     // NOTE check if option type has value and push if not. 
-                    if (!this.options[typeLC].includes(value)) {
-                        this.options[typeLC].push(value);
-                    }
+                    const words = value.split(', ');
+                    words.forEach(word => {
+                        if (!this.options[typeLC].includes(word)) {
+                            this.options[typeLC].push(word);
+                        }
+
+                    })
                 });
                 // NOTE - fill data array with initial values
                 this.data.push(itemData);
@@ -61,6 +66,7 @@ function app() {
         },
         // !SECTION
         // SECTION Filter function
+        filters: {},
         filterItems: function (type, andOr) {
             
         },
