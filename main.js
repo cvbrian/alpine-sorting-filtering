@@ -45,7 +45,6 @@ function app() {
                             }
                             this.filters[typeLC].push(option);
                         }
-                        
                     })
                 });
                 // NOTE - fill data array with initial values
@@ -72,9 +71,13 @@ function app() {
         filters: {},
         filterItems: function (type, andOr) {
             const result = this.data.filter(i => {
-                
-                i[type].includes()
-            })
+                this.filters[type].forEach(filter => {
+                    if (filter.show) {
+                        i[type].includes(filter.name)
+                    }
+                });
+            });
+            this.results[type] = [...result];
         },
         // !SECTION
         // SECTION Old filtering functions
@@ -112,7 +115,7 @@ function app() {
         // SECTION Results
         results: {
             search: [],
-            all:[],
+            all: [],
         },
         finalResults: [],
         // Compile results array
