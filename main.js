@@ -11,7 +11,6 @@ function app() {
     return {
         // SECTION - Initialize data
         data: [],
-        options: {},
         init: function () {
             const data = [];
             const results = [];
@@ -33,16 +32,20 @@ function app() {
                     itemData[type] = value;
                     // NOTE Find all options for all the types
                     // NOTE check if options object has type and add if not
-                    if (!(typeLC in this.options)) {
-                        this.options[typeLC] = [];
+                    if (!(typeLC in this.filters)) {
+                        this.filters[typeLC] = [];
                     }
                     // NOTE check if option type has value and push if not. 
                     const words = value.split(', ');
                     words.forEach(word => {
-                        if (!this.options[typeLC].includes(word)) {
-                            this.options[typeLC].push(word);
+                        if (!this.filters[type].includes(word)) {
+                            const option = {
+                                name: word,
+                                show: false,
+                            }
+                            this.filters[typeLC].push(option);
                         }
-
+                        
                     })
                 });
                 // NOTE - fill data array with initial values
@@ -68,7 +71,10 @@ function app() {
         // SECTION Filter function
         filters: {},
         filterItems: function (type, andOr) {
-            
+            const result = this.data.filter(i => {
+                
+                i[type].includes()
+            })
         },
         // !SECTION
         // SECTION Old filtering functions
