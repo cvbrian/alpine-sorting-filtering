@@ -1,5 +1,6 @@
 // SECTION Todos
 // TODO Set up sorting
+// TODO set up number sorting
 // !SECTION
 
 
@@ -106,6 +107,12 @@ function app() {
             // NOTE set sort object values
             this.sort.by = item;
             this.sort.order = order;
+        },
+        sortOrder: function (id) {
+            const index = this.data.findIndex(i => {
+                i.id == id; 
+            });  
+            return `order:${index};`
         },
         // !SECTION
         // SECTION Old filtering functions
