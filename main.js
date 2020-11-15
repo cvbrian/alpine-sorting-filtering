@@ -109,12 +109,8 @@ function app() {
             this.sort.order = order;
         },
         sortOrder: function (id) {
-            const index = this.data.findIndex(i => {
-                console.log(i);
-                i.id == id; 
-            });  
-            console.log(index);
-            return `order:${index};`
+            const index = this.data.findIndex(i => i.id == id);  
+            return `order:${index};`;
         },
         // !SECTION
         // SECTION Old filtering functions
