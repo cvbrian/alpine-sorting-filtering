@@ -21,7 +21,7 @@
             />
         </div>
         <div class="flex flex-col">
-            <div data-a-type="item" class="m-3" id="23" x-show="isVisible('23')">
+            <div data-a-type="item" :style="sortOrder(23)" class="m-3" id="23" x-show="isVisible('23')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">Eastern, western</div>
                 <div data-a-type="status">open</div>
@@ -30,7 +30,7 @@
                     <div data-a-type="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur perferendis, nostrum explicabo corrupti odit magni similique dolorem non eveniet hic mollitia illo recusandae ex laudantium aut alias itaque nihil labore fuga, delectus sit at totam, quo iure. Dolore facilis libero culpa rerum est adipisci iusto! Similique nulla laborum eligendi excepturi.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="2" x-show="isVisible('2')">
+            <div data-a-type="item" :style="sortOrder(2)" class="m-3" id="2" x-show="isVisible('2')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -39,7 +39,7 @@
                     <div data-a-type="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, aspernatur veritatis, sunt eaque, beatae quasi harum quibusdam libero culpa error ullam vero voluptas delectus. Saepe?</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="32"  x-show="isVisible('32')">
+            <div data-a-type="item" :style="sortOrder(32)" class="m-3" id="32"  x-show="isVisible('32')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">western, central</div>
                 <div data-a-type="status">open</div>
@@ -48,7 +48,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sed?</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="432" x-show="isVisible('432')">
+            <div data-a-type="item" :style="sortOrder(432)" class="m-3" id="432" x-show="isVisible('432')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
@@ -57,7 +57,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quas ab adipisci dignissimos quisquam tempora cupiditate at! Rerum porro a quam vel fugiat alias, tenetur expedita corrupti veniam accusantium ipsa.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="42" x-show="isVisible('42')">
+            <div data-a-type="item" :style="sortOrder(42)" class="m-3" id="42" x-show="isVisible('42')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">eastern, central</div>
                 <div data-a-type="status">closed</div>
@@ -66,7 +66,7 @@
                     <div data-a-type="test">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat rem laborum reiciendis autem dignissimos soluta optio asperiores praesentium maiores sunt?</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="12" x-show="isVisible('12')">
+            <div data-a-type="item" :style="sortOrder(12)" class="m-3" id="12" x-show="isVisible('12')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">closed</div>
@@ -75,7 +75,7 @@
                     <div data-a-type="test">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi, blanditiis?</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="34" x-show="isVisible('34')">
+            <div data-a-type="item" :style="sortOrder(34)" class="m-3" id="34" x-show="isVisible('34')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
@@ -84,7 +84,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi quis in, nisi ab magni nihil nam commodi cum corrupti eos?</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="64" x-show="isVisible('64')">
+            <div data-a-type="item" :style="sortOrder(64)" class="m-3" id="64" x-show="isVisible('64')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -93,7 +93,7 @@
                     <div data-a-type="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error doloremque nulla minus qui dignissimos, id officiis commodi! Sed, ea soluta.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="343" x-show="isVisible('343')">
+            <div data-a-type="item" :style="sortOrder(343)" class="m-3" id="343" x-show="isVisible('343')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -102,7 +102,7 @@
                     <div data-a-type="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, nulla.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="7" x-show="isVisible('7')">
+            <div data-a-type="item" :style="sortOrder(7)" class="m-3" id="7" x-show="isVisible('7')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">eastern</div>
                 <div data-a-type="status">open</div>
@@ -111,7 +111,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ratione nostrum laborum in dolorem esse minima sit veniam quasi!</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="78" x-show="isVisible('78')">
+            <div data-a-type="item" :style="sortOrder(78)" class="m-3" id="78" x-show="isVisible('78')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">open</div>
@@ -120,7 +120,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, dolore facilis a molestias repellendus officiis accusantium beatae aperiam facere animi.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="98" x-show="isVisible('98')">
+            <div data-a-type="item" :style="sortOrder(98)" class="m-3" id="98" x-show="isVisible('98')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
@@ -129,7 +129,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi, temporibus distinctio? Dolores illo amet et quae eos dolorum, sint voluptas.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="9" x-show="isVisible('9')">
+            <div data-a-type="item" :style="sortOrder(9)" class="m-3" id="9" x-show="isVisible('9')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">eastern</div>
                 <div data-a-type="status">closed</div>
@@ -138,7 +138,7 @@
                     <div data-a-type="test">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae animi, voluptatibus ex ipsum blanditiis vero, non, earum eos odit et tenetur pariatur! Laborum dolorem ab est sunt? Vel, magni autem.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="554" x-show="isVisible('554')">
+            <div data-a-type="item" :style="sortOrder(554)" class="m-3" id="554" x-show="isVisible('554')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">eastern</div>
                 <div data-a-type="status">closed</div>
@@ -147,7 +147,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, dolore. Labore, suscipit ratione. Repudiandae soluta tenetur est repellat dolorum ipsam a, quibusdam, illum aperiam, corrupti sint adipisci accusamus molestiae animi aliquid facilis dolor voluptates. Sunt veniam perferendis, quam repellat, ducimus officia nobis autem minima porro modi, odit quo quis! At.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="35" x-show="isVisible('35')">
+            <div data-a-type="item" :style="sortOrder(35)" class="m-3" id="35" x-show="isVisible('35')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -156,7 +156,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dolorum voluptatem, repudiandae, similique veniam blanditiis ut minus maxime in magnam deserunt reiciendis laudantium, recusandae officiis itaque saepe quo minima.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="852" x-show="isVisible('852')">
+            <div data-a-type="item" :style="sortOrder(852)" class="m-3" id="852" x-show="isVisible('852')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
@@ -165,7 +165,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus vero architecto magni inventore! Odit quae ullam at, quos delectus sapiente excepturi perferendis debitis dolore, placeat quam repellat, nesciunt eum?</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="8828" x-show="isVisible('8828')">
+            <div data-a-type="item" :style="sortOrder(8828)" class="m-3" id="8828" x-show="isVisible('8828')">
                 <div data-a-type="country">Canada</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -174,7 +174,7 @@
                     <div data-a-type="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas debitis aspernatur voluptates soluta, iusto reprehenderit repellendus excepturi voluptatem maxime necessitatibus, quidem neque suscipit fugit temporibus id ipsam. Voluptates, veniam?</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="868" x-show="isVisible('868')">
+            <div data-a-type="item" :style="sortOrder(868)" class="m-3" id="868" x-show="isVisible('868')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">closed</div>
@@ -183,7 +183,7 @@
                     <div data-a-type="test">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem ipsum saepe porro dolor sunt rem incidunt, dolorum reprehenderit quos sed.</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="896836" x-show="isVisible('896836')">
+            <div data-a-type="item" :style="sortOrder(896836)" class="m-3" id="896836" x-show="isVisible('896836')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">western</div>
                 <div data-a-type="status">open</div>
@@ -192,7 +192,7 @@
                     <div data-a-type="test">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio maxime blanditiis molestiae. Nesciunt quos fugiat ea non sed ullam vel?</div>
                 </div>
             </div>
-            <div data-a-type="item" class="m-3" id="89" x-show="isVisible('89')">
+            <div data-a-type="item" :style="sortOrder(89)" class="m-3" id="89" x-show="isVisible('89')">
                 <div data-a-type="country">USA</div>
                 <div data-a-type="region">central</div>
                 <div data-a-type="status">open</div>
