@@ -69,7 +69,11 @@ function app() {
         filterItems: function (type, and = false) {
             if (!and) {
                 const results = this.data.filter(i => {
-
+                    this.filters[type].every(filter => {
+                        if (filter.show) {
+                            i[type].includes(filter.name)
+                        }
+                    });
                 });
             } else {
                 const result = this.data.filter(i => {
