@@ -24,14 +24,12 @@ function app() {
                 // NOTE Find all types and values
                 items.forEach((i) => {
                     const type = i.dataset.aType;
-                    const typeLC = type.toLowerCase();
                     const value = i.innerText;
-                    const valueLC = i.innerText.toLowerCase();
                     itemData[type] = value;
                     // NOTE Find all options for all the types
                     // NOTE check if options object has type and add if not
-                    if (!(typeLC in this.filters)) {
-                        this.filters[typeLC] = [];
+                    if (!(type in this.filters)) {
+                        this.filters[type] = [];
                     }
                     // NOTE check if option type has value and push if not. 
                     const words = value.split(', ');
@@ -41,7 +39,7 @@ function app() {
                                 name: word,
                                 show: false,
                             }
-                            this.filters[typeLC].push(option);
+                            this.filters[type].push(option);
                         }
                     });
                 });
