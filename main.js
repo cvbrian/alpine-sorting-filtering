@@ -110,8 +110,10 @@ function app() {
         },
         sortOrder: function (id) {
             const index = this.data.findIndex(i => {
+                console.log(i);
                 i.id == id; 
             });  
+            console.log(index);
             return `order:${index};`
         },
         // !SECTION
