@@ -71,11 +71,11 @@ function app() {
         filterItems: function (type, and = false) {
             if (!and) {
                 const results = this.data.filter(i => {
-                    
+
                 });
             } else {
                 const result = this.data.filter(i => {
-                    this.filters[type].forEach(filter => {
+                    this.filters[type].some(filter => {
                         if (filter.show) {
                             i[type].includes(filter.name)
                         }
