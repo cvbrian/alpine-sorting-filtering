@@ -92,17 +92,20 @@ function app() {
         },
         sortItems: function (item) {
             const order = this.sort.order === 'asc' ? 'desc' : 'asc';
-            this.data.sort((a, b) => {
-                const first = a[item].toLowerCase();
-                const second = b[item].toLowerCase();
-                if (first < second) {
+            this.data.sort((first, second) => {
+                const a = order === 'asc' ? first[item].toLowerCase() : second[item].toLowerCase();
+                const b = order === 'asc' ? second[item].toLowerCase() : first[item].toLowerCase();
+                if (a < b) {
                     return -1;
                 }
-                if (first > second) {
+                if (a > b) {
                     return 1;
                 }
                 return 0;
             });
+            // NOTE set sort object values
+            this.sort.by = item;
+            this.sort.order = order;
         },
         // !SECTION
         // SECTION Old filtering functions
