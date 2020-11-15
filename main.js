@@ -1,5 +1,4 @@
 // SECTION Todos
-// TODO Multiple query options
 // TODO Set up sorting
 // !SECTION
 
@@ -20,6 +19,7 @@ function app() {
                 const itemData = {
                     id: item.id,
                     text: item.innerText,
+                    sort: ++count,
                 };
                 // NOTE Find all types and values
                 items.forEach((i) => {
@@ -46,9 +46,7 @@ function app() {
                 // NOTE - fill data array with initial values
                 this.data.push(itemData);
                 this.results.all.push(itemData.id);
-                count++;
             });
-            console.log(`count: ${count}`);
             this.searchItems();
         },
         // !SECTION
@@ -64,7 +62,6 @@ function app() {
         },
         // !SECTION
         // SECTION Filter function
-        // TODO Filter And/Or
         filters: {},
         filterItems: function (type, and = false) {
             if (!and) {
@@ -86,6 +83,26 @@ function app() {
             }
             // NOTE Update results array
             this.results[type] = [...result];
+        },
+        // !SECTION
+        // SECTION Sort function
+        sort: {
+            by: undefined,
+            order: undefined,
+        },
+        sortItems: function (item) {
+            const order = this.sort.order === 'asc' ? 'desc' : 'asc';
+            this.data.sort((a, b) => {
+                const first = a[item].toLowerCase();
+                const second = b[item].toLowerCase();
+                if (first < second) {
+                    return -1;
+                }
+                if (first > second) {
+                    return 1;
+                }
+                return 0;
+            });
         },
         // !SECTION
         // SECTION Old filtering functions
