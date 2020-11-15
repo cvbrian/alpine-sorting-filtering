@@ -1,6 +1,4 @@
 // SECTION Todos
-// TODO Generic Filter function
-// TODO Filter And/Or
 // TODO Multiple query options
 // TODO Set up sorting
 // !SECTION
@@ -45,7 +43,7 @@ function app() {
                             }
                             this.filters[typeLC].push(option);
                         }
-                    })
+                    });
                 });
                 // NOTE - fill data array with initial values
                 this.data.push(itemData);
@@ -68,15 +66,23 @@ function app() {
         },
         // !SECTION
         // SECTION Filter function
+        // TODO Filter And/Or
         filters: {},
-        filterItems: function (type, andOr) {
-            const result = this.data.filter(i => {
-                this.filters[type].forEach(filter => {
-                    if (filter.show) {
-                        i[type].includes(filter.name)
-                    }
+        filterItems: function (type, and = false) {
+            if (!and) {
+                const results = this.data.filter(i => {
+                    
                 });
-            });
+            } else {
+                const result = this.data.filter(i => {
+                    this.filters[type].forEach(filter => {
+                        if (filter.show) {
+                            i[type].includes(filter.name)
+                        }
+                    });
+                });
+            }
+            // NOTE Update results array
             this.results[type] = [...result];
         },
         // !SECTION
