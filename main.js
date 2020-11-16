@@ -63,28 +63,40 @@ function app() {
         // SECTION Filter function
         filters: {},
         filterItems: function (type, and = false) {
-            if (!and) {
-                const results = this.data.filter(i => {
-                    this.filters[type].every(filter => {
-                        if (filter.show) {
-                            i[type].includes(filter.name)
-                        }
+            if (this.filters[type].length) {
+                if (!and) {
+                    const results = this.data.filter(i => {
+                        this.filters[type].every(filter => {
+                            if (filter.show) {
+                                i[type].includes(filter.name)
+                            }
+                        });
                     });
-                });
+                } else {
+                    const results = this.data.filter(i => {
+                        this.filters[type].some(filter => {
+                            if (filter.show) {
+                                i[type].includes(filter.name)
+                            }
+                        });
+                    });
+                }
             } else {
-                const result = this.data.filter(i => {
-                    this.filters[type].some(filter => {
-                        if (filter.show) {
-                            i[type].includes(filter.name)
-                        }
-                    });
-                });
+                const results = this.data;
             }
+            results = results.map(i => i.id);
             // NOTE Update results array
-            this.results[type] = [...result];
+            this.results[type] = [...results];
+            this.compileResults();
         },
+        // filterShow: function (type) {
+        //     const array = [this.filters[type]];
+        //     console.log(this.filters[type])
+        //     return this.filters['country']
+        // },
         // !SECTION
         // SECTION Sort function
+        // NOTE Current sort state
         sort: {
             by: undefined,
             order: undefined,
@@ -95,7 +107,6 @@ function app() {
             if (number) {
                 // NOTE number sort function
                 this.data.sort((a, b) => order === 'asc' ? a[item] - b[item] : b[item] - a[item]);
-                console.log('number sort')
             } else {
                 // NOTE word sort function
                 this.data.sort((first, second) => {
@@ -105,7 +116,6 @@ function app() {
                     if (a > b) {return 1;}
                     return 0;
                 });
-                console.log('word sort')
             }
             // NOTE set sort object values
             this.sort.by = item;
