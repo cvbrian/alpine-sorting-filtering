@@ -1,6 +1,4 @@
 // SECTION Todos
-// TODO Set up sorting
-// TODO set up number sorting
 // !SECTION
 
 
@@ -91,59 +89,33 @@ function app() {
             by: undefined,
             order: undefined,
         },
-        sortItems: function (item) {
+        // NOTE sort function - sorts data array
+        sortItems: function (item, number = false) {
             const order = this.sort.order === 'asc' ? 'desc' : 'asc';
-            this.data.sort((first, second) => {
-                const a = order === 'asc' ? first[item].toLowerCase() : second[item].toLowerCase();
-                const b = order === 'asc' ? second[item].toLowerCase() : first[item].toLowerCase();
-                if (a < b) {
-                    return -1;
-                }
-                if (a > b) {
-                    return 1;
-                }
-                return 0;
-            });
+            if (number) {
+                // NOTE number sort function
+                this.data.sort((a, b) => order === 'asc' ? a[item] - b[item] : b[item] - a[item]);
+                console.log('number sort')
+            } else {
+                // NOTE word sort function
+                this.data.sort((first, second) => {
+                    const a = order === 'asc' ? first[item].toLowerCase() : second[item].toLowerCase();
+                    const b = order === 'asc' ? second[item].toLowerCase() : first[item].toLowerCase();
+                    if (a < b) {return -1;}
+                    if (a > b) {return 1;}
+                    return 0;
+                });
+                console.log('word sort')
+            }
             // NOTE set sort object values
             this.sort.by = item;
             this.sort.order = order;
         },
+        // NOTE function to find index for item sort. Returns style attribute contents
         sortOrder: function (id) {
             const index = this.data.findIndex(i => i.id == id);  
             return `order:${index};`;
         },
-        // !SECTION
-        // SECTION Old filtering functions
-        // NOTE - filter grade levels
-        gradeLevelResults: [],
-        filterGradeLevels: function () {
-            let filteredGradeLevels = this.gradeLevels.filter(i => i.show === true).map(i => i.name);
-            let gradeLevelResults = [];
-            const data = this.data;
-            if (filteredGradeLevels.length) {
-                const result = data.filter(i => i.gradeLevels.some(i => filteredGradeLevels.includes(i)));
-                result.forEach(i => gradeLevelResults.push(i.id));
-                // console.log('start grade level filter');
-                // console.log(result);
-                // console.log('end grade level filter');
-            } else {
-                data.forEach(i => gradeLevelResults.push(i.id));
-            }
-            this.gradeLevelResults = [...gradeLevelResults];
-            // console.log('start grade levels');
-            // console.log(gradeLevelResults);
-            // console.log('end grade levels')
-            this.compileResults();
-        },
-        // TODO filter by district
-
-        allDistricts: [],
-        filteredDistricts: [],
-        districtResults: [],
-        filterDistricts: function () {
-
-        },
-        // TODO filter by status
         // !SECTION
         // SECTION Results
         results: {
@@ -158,8 +130,6 @@ function app() {
             this.finalResults = [...results];
         },
         isVisible: function (id) {
-            // console.log(id);
-            // debugger;
             return this.finalResults.includes(id);
         },
         // !SECTION
