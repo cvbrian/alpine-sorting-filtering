@@ -63,30 +63,16 @@ function app() {
         // SECTION Filter function
         filters: {},
         filterItems: function (type, and = false) {
-            if (this.filters[type].length) {
-                if (!and) {
-                    const results = this.data.filter(i => {
-                        this.filters[type].every(filter => {
-                            if (filter.show) {
-                                i[type].includes(filter.name)
-                            }
-                        });
-                    });
+            let results;
+            if (this.filters[type].some(i => i.show)) {
+                if (and) {
+                    this.results[type] = this.data.filter(i => this.filters[type].filter(a => a.show).every(filter => i[type].includes(filter.name))).map(i => i.id)
                 } else {
-                    const results = this.data.filter(i => {
-                        this.filters[type].some(filter => {
-                            if (filter.show) {
-                                i[type].includes(filter.name)
-                            }
-                        });
-                    });
+                    this.results[type] = this.data.filter(i => this.filters[type].filter(a => a.show).some(filter => i[type].includes(filter.name))).map(i => i.id)
                 }
             } else {
-                const results = this.data;
+                this.results[type] = this.data.map(i => i.id)
             }
-            results = results.map(i => i.id);
-            // NOTE Update results array
-            this.results[type] = [...results];
             this.compileResults();
         },
         // filterShow: function (type) {
@@ -112,8 +98,12 @@ function app() {
                 this.data.sort((first, second) => {
                     const a = order === 'asc' ? first[item].toLowerCase() : second[item].toLowerCase();
                     const b = order === 'asc' ? second[item].toLowerCase() : first[item].toLowerCase();
-                    if (a < b) {return -1;}
-                    if (a > b) {return 1;}
+                    if (a < b) {
+                        return -1;
+                    }
+                    if (a > b) {
+                        return 1;
+                    }
                     return 0;
                 });
             }
@@ -123,7 +113,7 @@ function app() {
         },
         // NOTE function to find index for item sort. Returns style attribute contents
         sortOrder: function (id) {
-            const index = this.data.findIndex(i => i.id == id);  
+            const index = this.data.findIndex(i => i.id == id);
             return `order:${index};`;
         },
         // !SECTION

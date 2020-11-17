@@ -21,11 +21,9 @@
             />
         </div>
         <div class="p-6">
-            <!-- <template x-for="item in filters.country">
-                <div x-text="item"></div>
-            </template> -->
-            <!-- <div x-text="filterShow('country')"></div>
-            <div x-text="Array.isArray(filters.country)"></div> -->
+            <template x-for="item in filters.country" x-if="filters.country && filters.country.length > 0">
+                <div x-text="item.name" @click="item.show = !item.show; filterItems('country')"></div>
+            </template>
         </div>
         <div class="flex flex-col">
             <div data-a-type="item" :style="sortOrder('23')" class="m-3" id="23" x-show="isVisible('23')">
