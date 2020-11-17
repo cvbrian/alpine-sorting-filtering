@@ -66,8 +66,10 @@ function app() {
             let results;
             if (this.filters[type].some(i => i.show)) {
                 if (and) {
+                    // NOTE And filter function
                     this.results[type] = this.data.filter(i => this.filters[type].filter(a => a.show).every(filter => i[type].includes(filter.name))).map(i => i.id)
                 } else {
+                    // NOTE Or filter function
                     this.results[type] = this.data.filter(i => this.filters[type].filter(a => a.show).some(filter => i[type].includes(filter.name))).map(i => i.id)
                 }
             } else {
@@ -75,11 +77,6 @@ function app() {
             }
             this.compileResults();
         },
-        // filterShow: function (type) {
-        //     const array = [this.filters[type]];
-        //     console.log(this.filters[type])
-        //     return this.filters['country']
-        // },
         // !SECTION
         // SECTION Sort function
         // NOTE Current sort state
