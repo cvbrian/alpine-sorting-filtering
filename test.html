@@ -21,8 +21,8 @@
             />
         </div>
         <div class="p-6">
-            <template x-for="item in filters.country" x-if="filters.country && filters.country.length > 0">
-                <div x-text="item.name" @click="item.show = !item.show; filterItems('country')"></div>
+            <template x-for="item in filters.status" x-if="filters.status && filters.status.length > 0">
+                <div x-text="item.name" @click="item.show = !item.show; filterItems('status')"></div>
             </template>
         </div>
         <div class="flex flex-col">

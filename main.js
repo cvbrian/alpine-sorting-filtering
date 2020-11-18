@@ -95,12 +95,8 @@ function app() {
                 this.data.sort((first, second) => {
                     const a = order === 'asc' ? first[item].toLowerCase() : second[item].toLowerCase();
                     const b = order === 'asc' ? second[item].toLowerCase() : first[item].toLowerCase();
-                    if (a < b) {
-                        return -1;
-                    }
-                    if (a > b) {
-                        return 1;
-                    }
+                    if (a < b) {return -1;}
+                    if (a > b) {return 1;}
                     return 0;
                 });
             }
@@ -120,12 +116,13 @@ function app() {
             all: [],
         },
         finalResults: [],
-        // Compile results array
+        // NOTE Compile results array
         compileResults: function () {
             const resultsArray = Object.values(this.results);
             const results = resultsArray.reduce((acc, current) => acc.filter(i => current.includes(i)));
             this.finalResults = [...results];
         },
+        // NOTE check if element is visible
         isVisible: function (id) {
             return this.finalResults.includes(id);
         },
